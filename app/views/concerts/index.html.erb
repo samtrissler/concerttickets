@@ -10,6 +10,7 @@
       <th>End date</th>
       <th>Price</th>
       <th>Tickets available</th>
+            <th>Tickets Remaining</th>
       <th>Venue</th>
       <th colspan="3"></th>
     </tr>
@@ -21,8 +22,22 @@
       <td><%= concert.name %></td>
       <td><%= concert.start_date %></td>
       <td><%= concert.end_date %></td>
-      <td><%= concert.price %></td>
+        <td><%= number_to_currency(concert.price) %></td>
       <td><%= concert.tickets_available %></td>
+
+
+      <% if concert.tickets_percentage < 21 && concert.tickets_remaining != 0 %>
+            <td class="warning"><%= concert.tickets_remaining %></td>
+            <% end %>
+
+            <% if concert.tickets_remaining == 0 %>
+            <td class="danger"><%= concert.tickets_remaining %></td>
+            <% end %>
+
+            <% if concert.tickets_percentage > 21 %>
+            <td><%= concert.tickets_remaining %></td>
+            <% end %>
+
 
       <td><%= concert.venue.name if concert.venue  %></td>
 

@@ -8,13 +8,18 @@ class Ability
     if user.has_role? :admin
       can :manage, :all
     elsif user.has_role? :customer
-    can :manage, user
-    can :index, :all
+      can :manage, User, :id => user.id
+      can [:index, :show], Concert
+      can :show, Venue
+      can :create, Purchase
+      can :show, Purchase, :user => user
+      can :index, Purchase, :user => user
     else
-      can :index, :all
+      can [:index, :show], Concert
+      can :show, Venue
       can :create, User
     end
 
-
   end
+
 end

@@ -14,8 +14,17 @@ get "logout", :to => "user_sessions#destroy"
   # You can have the root of your site routed with "root"
    root 'concerts#index'
 
+get 'concert_purchase/:concert_id/new' => 'purchases#new', as: :concert_purchase
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+
+
+  # namespace :api, defaults: {format: 'json'} do
+  #   namespace :v1 do
+  #
+  #     get 'venues', :to => 'venues#index'
+  #   end
+  # end
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
